@@ -1,0 +1,115 @@
+* { 
+  margin: 0; 
+  padding: 0; 
+  box-sizing: border-box; 
+  font-family: 'Poppins', sans-serif; 
+} 
+
+.body1 { 
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  min-height: 100vh; 
+  background: #030446; 
+} 
+
+.spin-container { 
+  position: relative; 
+  width: 400px; 
+  height: 400px; 
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  flex-direction: column; 
+} 
+
+.spin-balance { 
+  position: absolute; 
+  top: -70px; 
+  font-size: 1.5em; 
+  font-weight: 700; 
+  color: #fff; 
+  text-shadow: 3px 5px 2px rgba(0, 0, 0, 0.15); 
+  background: rgba(0, 0, 0, 0.5); 
+  padding: 10px 20px; 
+  border-radius: 10px; 
+} 
+
+.spin-spinBtn { 
+  position: absolute; 
+  bottom: 180px; 
+  width: 60px; 
+  height: 60px; 
+  background: #fff; 
+  border-radius: 50%; 
+  z-index: 10; 
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  text-transform: uppercase; 
+  font-weight: 600; 
+  color: black; 
+  letter-spacing: 0.1em; 
+  border: 4px solid rgba(0,0,0,0.75); 
+  cursor: pointer; 
+  user-select: none; 
+} 
+
+.spin-spinBtn::before { 
+  content: ''; 
+  position: absolute; 
+  top: -25px; 
+  width: 40px; 
+  height: 40px; 
+  background: #f00; 
+  clip-path: polygon(50% 0%, 15% 95%, 80% 95%); 
+} 
+
+.spin-wheel { 
+  position: absolute; 
+  top: 0; 
+  left: 0; 
+  width: 100%; 
+  height: 100%; 
+  background: #030446; 
+  border-radius: 50%; 
+  overflow: hidden; 
+  box-shadow: 0 0 0 5px black, 0 0 0 15px #fff, 0 0 0 18px #111; 
+  transition: transform 4s cubic-bezier(0.25, 0.1, 0.25, 1); 
+} 
+
+.spin-number { 
+  position: absolute; 
+  width: 50%; 
+  height: 50%; 
+  background: var(--clr); 
+  transform-origin: bottom right; 
+  transform: rotate(calc(36deg * var(--i))); 
+  clip-path: polygon(0 0, 56% 0, 100% 100%, 0 56%); 
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  user-select: none; 
+} 
+
+.spin-number span { 
+  position: relative; 
+  transform: rotate(36deg); 
+  font-size: 2em; 
+  font-weight: 700; 
+  color: #fff; 
+  text-shadow: 3px 5px 2px rgba(0, 0, 0, 0.15); 
+} 
+
+.spin-spinsLeft { 
+  position: absolute; 
+  bottom: -50px; 
+  font-size: 1.2em; 
+  font-weight: 600; 
+  color: #fff; 
+  text-shadow: 3px 5px 2px rgba(0, 0, 0, 0.15); 
+  background: rgba(0, 0, 0, 0.5); 
+  padding: 8px 16px; 
+  border-radius: 8px; 
+  margin-top: 10px; 
+}
