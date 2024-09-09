@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import { BalanceProvider } from './contexts/BalanceContext'; // Adjust the path as necessary
 import Tap from './pages/Tap';
 import Mine from './pages/Mine';
-import Spin from './pages/Spin';
+import SpinWheel from './pages/Spin';  // Use SpinWheel from the Spin page
 import Task from './pages/Task';
 
 // Import your images
@@ -47,7 +47,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Tap />} />
           <Route path="/mine" element={<Mine />} />
-          <Route path="/spin" element={<Spin />} />
+          <Route path="/spin" element={<SpinWheel />} /> {/* Updated to use SpinWheel */}
           <Route path="/task" element={<Task />} />
         </Routes>
       </Router>

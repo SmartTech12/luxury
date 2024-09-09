@@ -2,18 +2,17 @@ import React, { useState, useEffect } from 'react';
 import { useBalance } from '../contexts/BalanceContext';
 import './Mine.css';
 
-const MINE_DURATION = 9 * 60 * 60 * 1000; // 9 hours in milliseconds
+const MINE_DURATION = 9 * 60 * 1000; // 9 hours in milliseconds
 const CLAIM_AMOUNT = 18;
 
 const Mine = () => {
   const { addToBalance } = useBalance();
   const [timeRemaining, setTimeRemaining] = useState(MINE_DURATION);
   const [miningStarted, setMiningStarted] = useState(false);
-  const [canClaim, setCanClaim] = useState(false); // New state to track claim availability
+  const [canClaim, setCanClaim] = useState(false);
 
   useEffect(() => {
     const storedData = JSON.parse(localStorage.getItem('mineData'));
-
     if (storedData) {
       const { startTime, miningComplete } = storedData;
       const currentTime = new Date().getTime();
@@ -21,6 +20,7 @@ const Mine = () => {
 
       if (miningComplete) {
         setCanClaim(true);
+        setTimeRemaining(0);
       } else if (elapsedTime < MINE_DURATION) {
         setTimeRemaining(MINE_DURATION - elapsedTime);
         setMiningStarted(true);
@@ -32,7 +32,7 @@ const Mine = () => {
   }, []);
 
   useEffect(() => {
-    if (miningStarted) {
+    if (miningStarted && !canClaim) {
       const intervalId = setInterval(() => {
         setTimeRemaining(prevTime => {
           if (prevTime <= 0) {
@@ -47,7 +47,7 @@ const Mine = () => {
 
       return () => clearInterval(intervalId);
     }
-  }, [miningStarted]);
+  }, [miningStarted, canClaim]);
 
   const handleStartMining = () => {
     const currentTime = new Date().getTime();
@@ -68,26 +68,24 @@ const Mine = () => {
   };
 
   const formatTime = (milliseconds) => {
-    const seconds = Math.floor((milliseconds / 1000) % 60);
     const minutes = Math.floor((milliseconds / (1000 * 60)) % 60);
     const hours = Math.floor((milliseconds / (1000 * 60 * 60)) % 24);
-
-    return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+    return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`;
   };
 
   return (
     <div className="mine-container">
-      <h1>Mine LXY Tokens</h1>
-      <p>Level up with mining!</p>
-      <p>Claim LXY and keep the mining site active!</p>
-      <button className='button' onClick={handleStartMining} disabled={miningStarted || canClaim}>
-        Start Mining
-      </button>
-      <button className='button' onClick={handleClaim} disabled={!canClaim}>
-        Claim
-      </button>
+      <h1>Mine LXY Token</h1>
+      <p className='l'>Level up with mining.</p>
+      <p className='no'>Claim LXY and keep the mining site active!</p>
       <div className="timer">
-        <span className='time'>Time Remaining: {formatTime(timeRemaining)}</span>
+        <span className='time'>Time Remaining: <p className='sec'>{formatTime(timeRemaining)}</p></span>
+        <button className='button' onClick={handleStartMining} disabled={miningStarted || canClaim}>
+          Start Mining
+        </button>
+        <button className='button' onClick={handleClaim} disabled={!canClaim}>
+          Claim Token
+        </button>
       </div>
     </div>
   );

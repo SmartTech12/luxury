@@ -29,7 +29,7 @@ function Task() {
         return { 
           ...task, 
           status: 'verifying', 
-          timer: setTimeout(() => markTaskCompleted(taskId), 30000) // 30-second delay
+          timer: setTimeout(() => markTaskCompleted(taskId), 10000) // 30-second delay
         };
       }
       return task;
@@ -54,9 +54,10 @@ function Task() {
   };
 
   return (
-    <div className="task-container">
-      <h1>Tasks</h1>
-      <h6>To verify task, Have to wait on the site for 30sec</h6>
+    <div className='body2'>
+         <div className="task-container">
+      <h1>Tasks<p>To verify task, Have to wait on the site for 10sec</p></h1>
+      
       <ul className="task-list">
         {tasks.map((task) => (
           <li key={task.id} className={task.status}>
@@ -69,6 +70,7 @@ function Task() {
           </li>
         ))}
       </ul>
+    </div>
     </div>
   );
 }

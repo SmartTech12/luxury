@@ -1,115 +1,200 @@
-* { 
-  margin: 0; 
-  padding: 0; 
-  box-sizing: border-box; 
-  font-family: 'Poppins', sans-serif; 
-} 
+.body3 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: rgba(9, 0, 31, 1);
+  color: #ffec99;
+ /* Adds a gradient background */
+}
 
-.body1 { 
-  display: flex; 
-  justify-content: center; 
-  align-items: center; 
-  min-height: 100vh; 
-  background: #030446; 
-} 
+.container {
+  position: relative;
+  width: 80vw; /* Adjusted responsive width */
+  height: 80vw; /* Adjusted responsive height */
+  max-width: 350px; /* Increased maximum width */
+  max-height: 350px; /* Increased maximum height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 1rem;
+}
 
-.spin-container { 
-  position: relative; 
-  width: 400px; 
-  height: 400px; 
-  display: flex; 
-  justify-content: center; 
-  align-items: center; 
-  flex-direction: column; 
-} 
+.container .spinText {
+  position: absolute;
+  top: -80px; /* Position the text above the wheel */
+  font-size: 1.4rem; /* Increased font size */
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
 
-.spin-balance { 
-  position: absolute; 
-  top: -70px; 
-  font-size: 1.5em; 
-  font-weight: 700; 
-  color: #fff; 
-  text-shadow: 3px 5px 2px rgba(0, 0, 0, 0.15); 
-  background: rgba(0, 0, 0, 0.5); 
-  padding: 10px 20px; 
-  border-radius: 10px; 
-} 
+.container .wheel {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(255,215,0,1) 0%, rgba(9,0,31,1) 100%);
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.2), 0 0 20px rgba(0, 0, 0, 0.5);
+  transition: transform 4s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
 
-.spin-spinBtn { 
-  position: absolute; 
-  bottom: 180px; 
-  width: 60px; 
-  height: 60px; 
-  background: #fff; 
-  border-radius: 50%; 
-  z-index: 10; 
-  display: flex; 
-  justify-content: center; 
-  align-items: center; 
-  text-transform: uppercase; 
-  font-weight: 600; 
-  color: black; 
-  letter-spacing: 0.1em; 
-  border: 4px solid rgba(0,0,0,0.75); 
-  cursor: pointer; 
-  user-select: none; 
-} 
+.container .wheel .number {
+  position: absolute;
+  width: 50%;
+  height: 50%;
+  background: var(--clr, #232526); /* Gradient for each segment */
+  background: linear-gradient(135deg, #171d1f, #0c1a2b); /* Change gradient per segment */
+  transform-origin: bottom right;
+  transform: rotate(calc(360deg / 10 * var(--i)));
+  clip-path: polygon(0 0, 56% 0, 100% 100%, 0 56%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+  cursor: pointer;
+  transition: background 0.3s ease; /* Smooth background transition */
+}
 
-.spin-spinBtn::before { 
-  content: ''; 
-  position: absolute; 
-  top: -25px; 
-  width: 40px; 
-  height: 40px; 
-  background: #f00; 
-  clip-path: polygon(50% 0%, 15% 95%, 80% 95%); 
-} 
+.container .wheel .number span {
+  position: relative;
+  transform: rotate(-36deg); /* Adjusted for 10 segments */
+  font-size: 1.4rem; /* Adjust font size for better visibility */
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
 
-.spin-wheel { 
-  position: absolute; 
-  top: 0; 
-  left: 0; 
-  width: 100%; 
-  height: 100%; 
-  background: #030446; 
-  border-radius: 50%; 
-  overflow: hidden; 
-  box-shadow: 0 0 0 5px black, 0 0 0 15px #fff, 0 0 0 18px #111; 
-  transition: transform 4s cubic-bezier(0.25, 0.1, 0.25, 1); 
-} 
+.container .spinBtn {
+  position: absolute;
+  top: 50%; /* Center vertically */
+  left: 50%; /* Center horizontally */
+  width: 60px; /* Slightly larger button */
+  height: 60px;
+  background: linear-gradient(135deg, #FFD700, #ffec99); /* Gradient for the button */
+  border-radius: 50%;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #4b0082;
+  letter-spacing: 0.1em;
+  border: 3px solid rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  user-select: none;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+  transition: background 0.3s ease, box-shadow 0.3s ease; /* Smooth button transitions */
+}
 
-.spin-number { 
-  position: absolute; 
-  width: 50%; 
-  height: 50%; 
-  background: var(--clr); 
-  transform-origin: bottom right; 
-  transform: rotate(calc(36deg * var(--i))); 
-  clip-path: polygon(0 0, 56% 0, 100% 100%, 0 56%); 
-  display: flex; 
-  justify-content: center; 
-  align-items: center; 
-  user-select: none; 
-} 
+.container .spinBtn:hover {
+  background: linear-gradient(135deg, #ffec99, #FFD700); /* Reverse gradient on hover */
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+}
 
-.spin-number span { 
-  position: relative; 
-  transform: rotate(36deg); 
-  font-size: 2em; 
-  font-weight: 700; 
-  color: #fff; 
-  text-shadow: 3px 5px 2px rgba(0, 0, 0, 0.15); 
-} 
+.container .spinBtn::before {
+  content: '';
+  position: absolute;
+  top: -24px; /* Adjust arrow position */
+  width: 36px; /* Adjust arrow size */
+  height: 36px;
+  background: #FFD700;
+  clip-path: polygon(50% 0%, 15% 95%, 80% 95%);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
 
-.spin-spinsLeft { 
-  position: absolute; 
-  bottom: -50px; 
-  font-size: 1.2em; 
-  font-weight: 600; 
-  color: #fff; 
-  text-shadow: 3px 5px 2px rgba(0, 0, 0, 0.15); 
-  background: rgba(0, 0, 0, 0.5); 
-  padding: 8px 16px; 
-  border-radius: 8px; 
-  margin-top: 10px; 
+.spinsLeft {
+  position: absolute;
+  bottom: -50px; /* Adjusted to bring it closer to the wheel */
+  font-size: 1.2rem; /* Increased font size for visibility */
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  background: rgba(0, 0, 0, 0.6);
+  padding: 10px 100px;
+  border-radius: 12px;
+  animation: fadeIn 0.5s ease-out; /* Add a fade-in effect */
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Media queries for smaller devices */
+@media (max-width: 600px) {
+  .container {
+    width: 90vw;
+    height: 90vw;
+  }
+
+  .container .spinText {
+    font-size: 1.2rem;
+  }
+
+  .container .spinBtn {
+    width: 50px;
+    height: 50px;
+  }
+
+  .container .spinBtn::before {
+    top: -20px;
+    width: 28px;
+    height: 28px;
+  }
+
+  .spinsLeft {
+    font-size: 1rem;
+    padding: 8px 16px;
+  }
+}
+
+.number {
+  position: absolute;
+  color: #9bc7ff;
+  font-size: 14px;
+  transform-origin: 150px 150px;
+}
+
+.number:nth-child(1) {
+  transform: rotate(36deg) translate(140px);
+}
+
+.number:nth-child(2) {
+  transform: rotate(72deg) translate(140px);
+}
+
+/* Repeat as needed */
+.number:nth-child(3) {
+  transform: rotate(108deg) translate(140px);
+}
+.number:nth-child(4) {
+  transform: rotate(144deg) translate(140px);
+}
+.number:nth-child(5) {
+  transform: rotate(180deg) translate(140px);
+}
+.number:nth-child(6) {
+  transform: rotate(216deg) translate(140px);
+}
+.number:nth-child(7) {
+  transform: rotate(252deg) translate(140px);
+}
+.number:nth-child(8) {
+  transform: rotate(288deg) translate(140px);
+}
+.number:nth-child(9) {
+  transform: rotate(324deg) translate(140px);
+}
+.number:nth-child(10) {
+  transform: rotate(360deg) translate(140px);
 }

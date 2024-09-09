@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './Tap.css';
 import tapImage from '../assets/icons/My_Coin.gif'; 
-import supabase from '../supabaseClient'; // Adjust path as necessary
 
 function Tap() {
   // Initialize state from localStorage
@@ -14,29 +13,6 @@ function Tap() {
     const savedTaps = localStorage.getItem('taps');
     return savedTaps ? parseInt(savedTaps, 10) : 0;
   });
-
-  // Fetch balance and taps from Supabase on component mount
-  useEffect(() => {
-    const fetchBalance = async () => {
-      const { data, error } = await supabase
-        .from('user_balance')
-        .select('balance, taps')
-        .single();
-
-      if (error) {
-        console.error('Error fetching balance:', error);
-      } else {
-        const balanceFromDB = data.balance || 0;
-        const tapsFromDB = data.taps || 0;
-        setBalance(balanceFromDB);
-        setTaps(tapsFromDB);
-        localStorage.setItem('balance', balanceFromDB.toFixed(3));
-        localStorage.setItem('taps', tapsFromDB);
-      }
-    };
-
-    fetchBalance();
-  }, []);
 
   // Sync localStorage balance with component state on update
   useEffect(() => {
@@ -54,8 +30,7 @@ function Tap() {
 
   return (
     <div className="tap-container">
-      <h1>Tap to Earn LXY</h1>
-      <p>Tap the image below to increase your balance!</p>
+      <h1>Luxurybot</h1>
       <div className="tap-image-container">
         <img
           src={tapImage}
@@ -64,6 +39,7 @@ function Tap() {
           onClick={handleTap}
         />
       </div>
+      <p className='p'>Tap the Luxury Coin</p>
       <div className="balance-info">
         <p><strong>Current Balance:</strong> {balance.toFixed(3)} LXY</p>
         <p><strong>Tap Count:</strong> {taps}</p>

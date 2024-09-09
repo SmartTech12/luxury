@@ -6,6 +6,11 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    width: Fixed (375px)px;
+height: Fixed (812px)px;
+gap: 0px;
+opacity: 0px;
+
   }
   
   main {
@@ -13,7 +18,7 @@ body {
   }
   
   nav {
-    background-color: #333;
+    background: rgba(9, 0, 31, 1);
     padding: 10px 0;
     position: fixed;
     bottom: 0;
@@ -44,7 +49,7 @@ body {
   nav ul li img {
     width: 24px; /* Adjust size as needed */
     height: 24px; /* Adjust size as needed */
-    margin-bottom: 4px; /* Space between icon and text */
+    margin-bottom: 2px; /* Space between icon and text */
   }
 
   

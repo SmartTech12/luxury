@@ -1,30 +1,47 @@
 *{
   margin: 0;
+  font-family: 'Times New Roman', Times, serif;
 }
 .mine-container {
-  background-image: url('../assets/icons/Diamond\ Neon\ Modern\ Phone\ Wallpaper_20240806_013134_0001.gif'); /* Update path as needed */
+  background: linear-gradient(180deg, #000F36 43.83%, #214FC4 100%);
   background-size: cover;
   background-position: center;
   text-align: center;
   height: 100vh; /* Full viewport height */
   color: white;
-  font-family: Arial, sans-serif;
+  font-family: 'Times New Roman', Times, serif;
+  justify-content: space-around;
+}
+.l {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 20px;
+  color: #fff;
 }
 
+.no {
+  font-size: 18px;
+  color: #fff;
+  font-family: 'Times New Roman', Times, serif;
+}
 
 .button {
-  margin-top: 15rem;
-  padding: 10px 20px;
+  
+  padding: 15px 30px;
   font-size: 16px;
   color: #fff;
   background-color: #007bff;
   border: none;
-  border-radius: 4px;
+  margin-left: 3px;
+  margin-right: 3px;
   cursor: pointer;
+  border-radius: 40px;
+  gap: 1rem;
 }
 
+
+
 .button:disabled {
-  background-color: #6c757d;
+  background-color: #7ea9ff;
   cursor: not-allowed;
 }
 
@@ -33,10 +50,16 @@
 }
 
 .timer {
-  margin-top: 10rem;
-  font-size: 24px;
+  margin-top: 4rem;
+  font-size: 13px;
   font-weight: bold;
+  font-family: 'Times New Roman', Times, serif;
   
+}
+
+.sec {
+  font-size: 50px;
+  color: #fff;
 }
 
 

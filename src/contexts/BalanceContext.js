@@ -12,6 +12,7 @@ export const BalanceProvider = ({ children }) => {
     localStorage.setItem('balance', balance);
   }, [balance]);
 
+  // Rename the function to 'addToBalance' to match usage
   const addToBalance = (amount) => {
     setBalance((prevBalance) => prevBalance + amount);
   };
